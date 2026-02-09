@@ -13,7 +13,6 @@ export default merge(common, {
     static: { directory: path.resolve(__dirname, 'dist') },
     hot: true,
     open: true,
-    watch: true,
     watchFiles: ['src/**/*.html'],
   },
   module: {

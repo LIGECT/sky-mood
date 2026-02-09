@@ -1,1 +1,2 @@
-console.log('Webpack is alive 🔥 or not');
+import './style.css';
+console.log('Webpack is alive 🔥');
