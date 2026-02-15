@@ -1,4 +1,5 @@
 import './style.css';
+import { processWeatherData } from './weatherData.js'
 
 async function getWeather(city) {
 	try{
@@ -13,7 +14,9 @@ async function getWeather(city) {
 		}
 
 		const data = await response.json()
-		console.log(data)
+		const processData = processWeatherData(data)
+		console.log(processData)
+
 	} catch (error) {
 		console.error("Damn, error:", error)
 	}
