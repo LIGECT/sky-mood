@@ -1,5 +1,6 @@
 import './style.css';
 import { processWeatherData } from './weatherData.js';
+import { renderWeather } from './ui.js';
 
 const form = document.getElementById('search');
 const input = document.getElementById('city-input');
@@ -22,6 +23,7 @@ async function getWeather(city) {
 
     const data = await response.json();
     const processData = processWeatherData(data);
+    renderWeather(processData);
     console.log(processData);
   } catch (error) {
     console.error('Damn, error:', error);
@@ -36,5 +38,6 @@ form.addEventListener('submit', (e) => {
     return;
   } else {
     getWeather(cityValue);
+    input.value = '';
   }
 });
