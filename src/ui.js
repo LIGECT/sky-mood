@@ -1,4 +1,6 @@
-export function renderWeather(data) {
+import { celsiusToFahrenheit } from './converters.js';
+
+export function renderWeather(data, currentUnit) {
   const container = document.getElementById('weather-container');
   container.replaceChildren();
 
@@ -9,7 +11,11 @@ export function renderWeather(data) {
   title.textContent = data.city;
 
   const temp = document.createElement('p');
-  temp.textContent = `${data.temp} °F`;
+  if (currentUnit === 'metric') {
+    temp.textContent = data.temp + ' °C';
+  } else {
+    temp.textContent = `${celsiusToFahrenheit(data.temp)} °F`;
+  }
 
   const conditions = document.createElement('p');
   conditions.textContent = data.conditions;
@@ -18,7 +24,7 @@ export function renderWeather(data) {
   description.textContent = data.description;
 
   const humidity = document.createElement('p');
-  humidity.textContent = data.humidity;
+  humidity.textContent = data.humidity + ' %';
 
   const windspeed = document.createElement('p');
   windspeed.textContent = data.windspeed;
