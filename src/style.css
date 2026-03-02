@@ -43,3 +43,7 @@
 .toggle-btn[data-state='us'] .toggle-slider {
   left: 28px;
 }
+
+.icon {
+  background: black;
+}

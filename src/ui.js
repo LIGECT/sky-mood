@@ -1,6 +1,7 @@
-import { celsiusToFahrenheit } from './converters.js';
+import { celsiusToFahrenheit } from './utils/converters.js';
+import { loadIcon } from './helpers/loadIcon.js';
 
-export function renderWeather(data, currentUnit) {
+export async function renderWeather(data, currentUnit) {
   const container = document.getElementById('weather-container');
   container.replaceChildren();
 
@@ -29,6 +30,11 @@ export function renderWeather(data, currentUnit) {
   const windspeed = document.createElement('p');
   windspeed.textContent = data.windspeed;
 
-  card.append(title, temp, conditions, description, humidity, windspeed);
+  const icon = document.createElement('img');
+  const iconName = await loadIcon(data.icon);
+  icon.src = iconName;
+  icon.className = 'icon';
+
+  card.append(title, temp, conditions, description, humidity, windspeed, icon);
   container.appendChild(card);
 }
