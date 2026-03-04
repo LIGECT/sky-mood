@@ -1,3 +1,51 @@
+:root {
+  --color-primary-bg: #121212;
+  --color-card-bg: rgba(255, 255, 255, 0.08);
+
+  --font-primary: 'Poppins', sans-serif;
+
+  --color-text-primary: #ffffff;
+  --color-text-label: rgba(255, 255, 255, 0.4);
+
+  --color-accent: #00bfa5;
+
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-glass-shadow: rgba(0, 0, 0, 0.1);
+
+  --border-radius: 14px;
+  --blur: 20px;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src:
+    url('./assets/fonts/Poppins-Light.woff2') format('woff2'),
+    url('./assets/fonts/Poppins-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src:
+    url('./assets/fonts/Poppins-Regular.woff2') format('woff2'),
+    url('./assets/fonts/Poppins-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src:
+    url('./assets/fonts/Poppins-Bold.woff2') format('woff2'),
+    url('./assets/fonts/Poppins-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -6,18 +54,99 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--color-primary-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+input {
+  border-radius: var(--border-radius);
+  padding: 7px;
+  background: none;
+  caret-color: var(--color-accent);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-glass-border);
+}
+
+input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-primary-bg);
+  padding: 7px;
+  border-radius: var(--border-radius);
+  background-color: var(--color-accent);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+  filter: brightness(0.9);
+}
+
+button:disabled {
+  background-color: var(--color-glass-border);
+  color: var(--color-text-label);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.functional-block {
+  display: flex;
+  width: 38%;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
 .weather-display {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  border: 1px solid black;
+  /* border: var(--color-card-bg); */
+}
+
+.glass-card {
+  display: flex;
+  background: var(--color-card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 30px var(--color-glass-shadow);
+  backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--color-glass-border);
+  padding: 16px;
+  gap: 5px;
 }
 
 .toggle-btn {
   width: 50px;
   height: 25px;
-  background: #ccc;
+  background: var(--color-glass-border);
   border-radius: 25px;
   border: none;
   position: relative;
@@ -26,7 +155,7 @@
 }
 
 .toggle-btn[data-state='us'] {
-  background: #4caf50;
+  background: var(--color-accent);
 }
 
 .toggle-slider {
@@ -42,8 +171,4 @@
 
 .toggle-btn[data-state='us'] .toggle-slider {
   left: 28px;
-}
-
-.icon {
-  background: black;
 }

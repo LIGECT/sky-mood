@@ -3,23 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
+    <title>Aura Weather</title>
   </head>
   <body>
-    <form id="search">
-      <input type="text" id="city-input" placeholder="Enter city name" />
-      <button type="submit">Search</button>
-    </form>
-    <button
-      type="button"
-      class="toggle-btn"
-      id="temp-toggle"
-      aria-pressed="false"
-      data-state="us"
-    >
-      <span class="toggle-slider"></span>
-    </button>
+    <header>
+      <h1>Aura Weather</h1>
+      <div class="functional-block">
+        <form id="search">
+          <input type="text" id="city-input" placeholder="Enter city..." />
+          <button type="submit">Search</button>
+        </form>
 
-    <div id="weather-container" class="weather-display"></div>
+        <button
+          type="button"
+          class="toggle-btn"
+          id="temp-toggle"
+          aria-pressed="false"
+          data-state="us"
+        >
+          <span class="toggle-slider"></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="weather-container" class="weather-display">
+      <div id="main-card" class="glass-card"></div>
+    </main>
   </body>
 </html>

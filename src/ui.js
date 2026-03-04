@@ -3,7 +3,10 @@ import { loadIcon } from './helpers/loadIcon.js';
 
 export async function renderWeather(data, currentUnit) {
   const container = document.getElementById('weather-container');
-  container.replaceChildren();
+  // container.replaceChildren();
+
+  const mainCard = document.getElementById('main-card');
+  mainCard.replaceChildren();
 
   const card = document.createElement('div');
   card.classList.add('card');
@@ -36,5 +39,6 @@ export async function renderWeather(data, currentUnit) {
   icon.className = 'icon';
 
   card.append(title, temp, conditions, description, humidity, windspeed, icon);
-  container.appendChild(card);
+  mainCard.appendChild(card);
+  container.appendChild(mainCard);
 }
