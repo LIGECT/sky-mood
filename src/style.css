@@ -172,3 +172,31 @@ button:disabled {
 .toggle-btn[data-state='us'] .toggle-slider {
   left: 28px;
 }
+
+.temp-main {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.temp-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+  color: var(--color-accent);
+}
+
+.icon-main-card {
+  width: 3rem;
+  height: 3rem;
+  fill: currentColor;
+}
+
+.humidity {
+  color: var(--color-text-label);
+}
+
+.windspeed {
+  color: var(--color-text-label);
+}

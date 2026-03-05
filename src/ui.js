@@ -1,5 +1,6 @@
 import { celsiusToFahrenheit } from './utils/converters.js';
 import { loadIcon } from './helpers/loadIcon.js';
+import { kmhToMph } from './utils/converters.js';
 
 export async function renderWeather(data, currentUnit) {
   const container = document.getElementById('weather-container');
@@ -11,17 +12,26 @@ export async function renderWeather(data, currentUnit) {
   const card = document.createElement('div');
   card.classList.add('card');
 
-  const title = document.createElement('h1');
+  const title = document.createElement('h2');
   title.textContent = data.city;
 
-  const temp = document.createElement('p');
+  const tempIndicator = document.createElement('div');
+  tempIndicator.classList.add('temp-indicator');
+
+  const temp = document.createElement('h1');
+  temp.classList.add('temp-main');
   if (currentUnit === 'metric') {
     temp.textContent = data.temp + ' °C';
   } else {
     temp.textContent = `${celsiusToFahrenheit(data.temp)} °F`;
   }
 
-  const conditions = document.createElement('p');
+  const mainIcon = await loadIcon(data.icon);
+  mainIcon.classList.add('icon-main-card');
+
+  tempIndicator.append(temp, mainIcon);
+
+  const conditions = document.createElement('h3');
   conditions.textContent = data.conditions;
 
   const description = document.createElement('p');
@@ -29,16 +39,24 @@ export async function renderWeather(data, currentUnit) {
 
   const humidity = document.createElement('p');
   humidity.textContent = data.humidity + ' %';
+  humidity.className = 'humidity';
 
   const windspeed = document.createElement('p');
-  windspeed.textContent = data.windspeed;
+  if (currentUnit === 'metric') {
+    windspeed.textContent = data.windspeed + ' km/h';
+  } else {
+    windspeed.textContent = kmhToMph(data.windspeed) + ' mph';
+  }
+  windspeed.className = 'windspeed';
 
-  const icon = document.createElement('img');
-  const iconName = await loadIcon(data.icon);
-  icon.src = iconName;
-  icon.className = 'icon';
-
-  card.append(title, temp, conditions, description, humidity, windspeed, icon);
+  card.append(
+    title,
+    tempIndicator,
+    conditions,
+    description,
+    humidity,
+    windspeed,
+  );
   mainCard.appendChild(card);
   container.appendChild(mainCard);
 }
