@@ -129,11 +129,12 @@ button:disabled {
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  /* border: var(--color-card-bg); */
+  gap: 1rem;
 }
 
 .glass-card {
   display: flex;
+  flex-direction: column;
   background: var(--color-card-bg);
   border-radius: var(--border-radius);
   box-shadow: 0 4px 30px var(--color-glass-shadow);
@@ -193,8 +194,9 @@ button:disabled {
   fill: currentColor;
 }
 
-.humidity {
-  color: var(--color-text-label);
+.icon-secondary-card{
+    width: 3rem;
+  height: 3rem;
 }
 
 .windspeed {

@@ -1,16 +1,14 @@
-import { celsiusToFahrenheit } from './utils/converters.js';
+import { celsiusToFahrenheit, kmhToMph } from './utils/converters.js';
 import { loadIcon } from './helpers/loadIcon.js';
-import { kmhToMph } from './utils/converters.js';
+import { createCard } from './helpers/creatCard.js'
 
 export async function renderWeather(data, currentUnit) {
   const container = document.getElementById('weather-container');
-  // container.replaceChildren();
-
-  const mainCard = document.getElementById('main-card');
+  container.replaceChildren()
+  
+  const mainCard = document.createElement('section');
   mainCard.replaceChildren();
-
-  const card = document.createElement('div');
-  card.classList.add('card');
+  mainCard.classList.add('glass-card');
 
   const title = document.createElement('h2');
   title.textContent = data.city;
@@ -37,9 +35,16 @@ export async function renderWeather(data, currentUnit) {
   const description = document.createElement('p');
   description.textContent = data.description;
 
-  const humidity = document.createElement('p');
-  humidity.textContent = data.humidity + ' %';
-  humidity.className = 'humidity';
+  const humidityCard = createCard({
+    title: 'Humidity', 
+    value: data.humidity + ' %'})
+
+  const humidityIcon = await loadIcon('droplets');
+  humidityIcon.classList.add('icon-secondary-card');
+
+  humidityCard.appendChild(humidityIcon);
+
+  
 
   const windspeed = document.createElement('p');
   if (currentUnit === 'metric') {
@@ -49,14 +54,13 @@ export async function renderWeather(data, currentUnit) {
   }
   windspeed.className = 'windspeed';
 
-  card.append(
+  mainCard.append(
     title,
     tempIndicator,
     conditions,
-    description,
-    humidity,
+    description,    
     windspeed,
   );
-  mainCard.appendChild(card);
-  container.appendChild(mainCard);
+
+  container.append(mainCard, humidityCard);
 }
