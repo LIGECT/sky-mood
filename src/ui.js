@@ -1,6 +1,6 @@
 import { celsiusToFahrenheit, kmhToMph } from './utils/converters.js';
 import { loadIcon } from './helpers/loadIcon.js';
-import { createCard } from './helpers/creatCard.js'
+import { createCard } from './helpers/createCard.js'
 
 export async function renderWeather(data, currentUnit) {
   const container = document.getElementById('weather-container');
@@ -37,30 +37,31 @@ export async function renderWeather(data, currentUnit) {
 
   const humidityCard = createCard({
     title: 'Humidity', 
-    value: data.humidity + ' %'})
-
+    value: data.humidity + ' %'
+  })
   const humidityIcon = await loadIcon('droplets');
   humidityIcon.classList.add('icon-secondary-card');
-
   humidityCard.appendChild(humidityIcon);
 
-  
+  const windValue = currentUnit === 'metric' 
+  ? `${data.windspeed} km/h` 
+  : `${kmhToMph(data.windspeed)} mph`;
 
-  const windspeed = document.createElement('p');
-  if (currentUnit === 'metric') {
-    windspeed.textContent = data.windspeed + ' km/h';
-  } else {
-    windspeed.textContent = kmhToMph(data.windspeed) + ' mph';
-  }
-  windspeed.className = 'windspeed';
+const windspeedCard = createCard({
+  title: 'Wind Speed',
+  value: windValue
+})
+  const windspeedIcon = await loadIcon('wind');
+    windspeedIcon.classList.add('icon-secondary-card');
+  windspeedCard.appendChild(windspeedIcon);
+  
 
   mainCard.append(
     title,
     tempIndicator,
     conditions,
-    description,    
-    windspeed,
+    description,       
   );
 
-  container.append(mainCard, humidityCard);
+  container.append(mainCard, humidityCard, windspeedCard);
 }
