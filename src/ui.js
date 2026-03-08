@@ -37,19 +37,34 @@ export async function renderWeather(data, currentUnit) {
 
   const hourlyCard = document.createElement('div')
   hourlyCard.classList.add('glass-card');
+
+  const hourlyWrapper = document.createElement('div')
+
   const hourlyCardTitle = document.createElement('h3')
   hourlyCardTitle.textContent = 'Hourly Forecast'
 
   const hourlyData = data.days[0].hours
   hourlyData.forEach(hour => {
-    const time = hour.datetime.slice(0, 5);
-    const temp = hour.temp;
-    const conditions = hour.conditions;
+    const miniHourlyCard = document.createElement('div')
+    miniHourlyCard.classList.add('hourly-item')
+    const time = document.createElement('p')
+    time.textContent = hour.datetime.slice(0, 5);
 
-    hourlyCard.innerHTML += `<p>${time}: ${temp}°C, ${conditions}</p>`;
+    const temp = document.createElement('p')
+      if (currentUnit === 'metric') {
+         temp.textContent = data.temp + ' °C';
+     } else {
+        temp.textContent = `${celsiusToFahrenheit(data.temp)} °F`;
+     }
+ 
+    const conditions = document.createElement('p')
+    conditions.textContent = hour.conditions
+
+    miniHourlyCard.append(time, temp, conditions)
+    hourlyWrapper.appendChild(miniHourlyCard )
   })
 
-  hourlyCard.appendChild(hourlyCardTitle)
+  hourlyCard.append(hourlyCardTitle, hourlyWrapper)
 
 
   const humidityCard = createCard({
