@@ -35,6 +35,23 @@ export async function renderWeather(data, currentUnit) {
   const description = document.createElement('p');
   description.textContent = data.description;
 
+  const hourlyCard = document.createElement('div')
+  hourlyCard.classList.add('glass-card');
+  const hourlyCardTitle = document.createElement('h3')
+  hourlyCardTitle.textContent = 'Hourly Forecast'
+
+  const hourlyData = data.days[0].hours
+  hourlyData.forEach(hour => {
+    const time = hour.datetime.slice(0, 5);
+    const temp = hour.temp;
+    const conditions = hour.conditions;
+
+    hourlyCard.innerHTML += `<p>${time}: ${temp}°C, ${conditions}</p>`;
+  })
+
+  hourlyCard.appendChild(hourlyCardTitle)
+
+
   const humidityCard = createCard({
     title: 'Humidity', 
     value: data.humidity + ' %'
@@ -75,5 +92,5 @@ const windspeedCard = createCard({
     description,       
   );
 
-  container.append(mainCard, humidityCard, windspeedCard, feelslikeCard);
+  container.append(mainCard, hourlyCard, humidityCard, windspeedCard, feelslikeCard);
 }

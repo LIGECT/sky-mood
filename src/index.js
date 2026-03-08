@@ -16,7 +16,7 @@ async function getWeather(city) {
     const api = process.env.API_KEY;
 
     const url = new URL(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${api}`,
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${api}&include=hours,days,current`,
     );
 
     const response = await fetch(url);

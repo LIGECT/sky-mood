@@ -1,9 +1,12 @@
 export function processWeatherData(data) {
+   console.log(data)
   const city = data.address;
   const { temp, conditions, humidity, windspeed, icon, feelslike} =
     data.currentConditions;
   const description = data.description;
+  const days = data.days
 
+ 
   return {
     city,
     temp,
@@ -12,8 +15,9 @@ export function processWeatherData(data) {
     humidity,
     windspeed,
     icon,
-    feelslike
+    feelslike,
+    days,
   };
 
-  // console.log(data)
+
 }
