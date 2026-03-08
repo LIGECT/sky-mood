@@ -7,5 +7,5 @@ export function celsiusToFahrenheit(celsius) {
 }
 
 export function kmhToMph(speed) {
-  return Math.round(speed * 0.621371);
+  return round(speed * 0.621371);
 }

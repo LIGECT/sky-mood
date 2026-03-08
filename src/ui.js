@@ -54,6 +54,18 @@ const windspeedCard = createCard({
   const windspeedIcon = await loadIcon('wind');
     windspeedIcon.classList.add('icon-secondary-card');
   windspeedCard.appendChild(windspeedIcon);
+
+  const feelsValue = currentUnit === 'metric'
+  ? `${data.feelslike} °C`
+  : `${celsiusToFahrenheit(data.feelslike)}  °F`
+
+  const feelslikeCard = createCard({
+    title: 'Feels Like',
+    value: feelsValue
+  })
+  const feelslikeIcon = await loadIcon('thermometer');
+    feelslikeIcon.classList.add('icon-secondary-card');
+  feelslikeCard.appendChild(feelslikeIcon);
   
 
   mainCard.append(
@@ -63,5 +75,5 @@ const windspeedCard = createCard({
     description,       
   );
 
-  container.append(mainCard, humidityCard, windspeedCard);
+  container.append(mainCard, humidityCard, windspeedCard, feelslikeCard);
 }

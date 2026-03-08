@@ -1,6 +1,6 @@
 export function processWeatherData(data) {
   const city = data.address;
-  const { temp, conditions, humidity, windspeed, icon } =
+  const { temp, conditions, humidity, windspeed, icon, feelslike} =
     data.currentConditions;
   const description = data.description;
 
@@ -12,6 +12,7 @@ export function processWeatherData(data) {
     humidity,
     windspeed,
     icon,
+    feelslike
   };
 
   // console.log(data)
