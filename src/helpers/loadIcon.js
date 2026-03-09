@@ -14,5 +14,3 @@ export async function loadIcon(iconName) {
     return await parseSvg(fallback);
   }
 }
-
-

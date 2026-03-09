@@ -195,11 +195,26 @@ button:disabled {
   fill: currentColor;
 }
 
-.icon-secondary-card{
-    width: 3rem;
+.icon-secondary-card {
+  width: 3rem;
   height: 3rem;
 }
 
 .windspeed {
   color: var(--color-text-label);
+}
+
+.hourly {
+  gap: 5px;
+  overflow-y: scroll;
+  width: 300px;
+  height: 200px;
+}
+
+.hourly-item {
+  gap: 10px;
+  border: 1px solid var(--color-glass-border);
+  margin: 5px;
+  border-radius: var(--border-radius);
+  padding: 5px;
 }
