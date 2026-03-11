@@ -78,6 +78,15 @@ export async function renderWeather(data, currentUnit) {
   humidityIcon.classList.add('icon-secondary-card');
   humidityCard.appendChild(humidityIcon);
 
+  const probabilityCard = createCard({
+    title: "Chance of Rain",
+    value: data.days[0].precipprob + ' %',
+  })
+  const probabilityIcon = await loadIcon('umbrella')
+  probabilityIcon.classList.add('icon-secondary-card');
+  probabilityCard.appendChild(probabilityIcon);
+
+
   const windValue =
     currentUnit === 'metric'
       ? `${data.windspeed} km/h`
@@ -112,5 +121,6 @@ export async function renderWeather(data, currentUnit) {
     humidityCard,
     windspeedCard,
     feelslikeCard,
+    probabilityCard
   );
 }

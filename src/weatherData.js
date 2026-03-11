@@ -5,6 +5,7 @@ export function processWeatherData(data) {
     data.currentConditions;
   const description = data.description;
   const days = data.days;
+  const { precipprob,sunrise, sunset} = data.days[0]
 
   return {
     city,
@@ -16,5 +17,8 @@ export function processWeatherData(data) {
     icon,
     feelslike,
     days,
+    precipprob,
+    sunrise,
+    sunset
   };
 }
