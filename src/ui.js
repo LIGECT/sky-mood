@@ -1,6 +1,7 @@
 import { celsiusToFahrenheit, kmhToMph } from './utils/converters.js';
 import { loadIcon } from './helpers/loadIcon.js';
 import { createCard } from './helpers/createCard.js';
+// import { getSunStatus } from './helpers/sunTime.js'
 
 export async function renderWeather(data, currentUnit) {
   const container = document.getElementById('weather-container');
@@ -113,6 +114,11 @@ export async function renderWeather(data, currentUnit) {
   feelslikeIcon.classList.add('icon-secondary-card');
   feelslikeCard.appendChild(feelslikeIcon);
 
+  // const sunTimeCard = createCard({
+  //   title: 'Sunrise and sunset',
+  //   value: 
+  // })''
+
   mainCard.append(title, tempIndicator, conditions, description);
 
   container.append(
@@ -121,6 +127,7 @@ export async function renderWeather(data, currentUnit) {
     humidityCard,
     windspeedCard,
     feelslikeCard,
-    probabilityCard
+    probabilityCard,
+    // sunTimeCard
   );
 }
