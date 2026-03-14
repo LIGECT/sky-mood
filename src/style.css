@@ -219,3 +219,8 @@ button:disabled {
   border-radius: var(--border-radius);
   padding: 5px;
 }
+
+.sun-labels {
+  display: flex;
+  justify-content: space-between;
+}

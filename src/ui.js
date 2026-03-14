@@ -1,7 +1,7 @@
 import { celsiusToFahrenheit, kmhToMph } from './utils/converters.js';
 import { loadIcon } from './helpers/loadIcon.js';
 import { createCard } from './helpers/createCard.js';
-// import { getSunStatus } from './helpers/sunTime.js'
+import { createSunCard } from './helpers/createSunCard.js';
 
 export async function renderWeather(data, currentUnit) {
   const container = document.getElementById('weather-container');
@@ -80,13 +80,12 @@ export async function renderWeather(data, currentUnit) {
   humidityCard.appendChild(humidityIcon);
 
   const probabilityCard = createCard({
-    title: "Chance of Rain",
+    title: 'Chance of Rain',
     value: data.days[0].precipprob + ' %',
-  })
-  const probabilityIcon = await loadIcon('umbrella')
+  });
+  const probabilityIcon = await loadIcon('umbrella');
   probabilityIcon.classList.add('icon-secondary-card');
   probabilityCard.appendChild(probabilityIcon);
-
 
   const windValue =
     currentUnit === 'metric'
@@ -114,10 +113,7 @@ export async function renderWeather(data, currentUnit) {
   feelslikeIcon.classList.add('icon-secondary-card');
   feelslikeCard.appendChild(feelslikeIcon);
 
-  // const sunTimeCard = createCard({
-  //   title: 'Sunrise and sunset',
-  //   value: 
-  // })''
+  const sunTimeCard = createSunCard(data.sunrise, data.sunset);
 
   mainCard.append(title, tempIndicator, conditions, description);
 
@@ -128,6 +124,6 @@ export async function renderWeather(data, currentUnit) {
     windspeedCard,
     feelslikeCard,
     probabilityCard,
-    // sunTimeCard
+    sunTimeCard,
   );
 }
