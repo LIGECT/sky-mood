@@ -37,7 +37,7 @@ export function calcSunProgress(sunrise, sunset) {
   return {
     progressPercent: Math.round(percent),
     isDay,
-  };
+  }
 }
 
 export function getSunStatus(sunrise, sunset) {
@@ -48,7 +48,15 @@ export function getSunStatus(sunrise, sunset) {
   let phase = '';
 
   if (currentTime >= sunsetTime || currentTime <= sunriseTime) {
-    phase = 'Sun below the horizon';
+
+    if(isDay){
+
+    }
+
+    const timeBeforeSunrise = sunriseTime - currentTime;
+    const hours = Math.floor(timeBeforeSunrise / 60);
+    const mins = timeBeforeSunrise % 60;
+    phase = `Time before sunrise: ${hours}h ${mins}m`;
   } else {
     const timeBeforeSunset = sunsetTime - currentTime;
     const hours = Math.floor(timeBeforeSunset / 60);

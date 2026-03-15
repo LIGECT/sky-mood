@@ -220,6 +220,30 @@ button:disabled {
   padding: 5px;
 }
 
+.sun-track{
+  height: 6px;
+  background-color: rgba(128, 128, 128, 0.5);
+  border-radius: var(--border-radius);
+  position: relative;
+}
+
+.sun-fill{
+  height: 100%;
+  background: linear-gradient(to right, var(--color-accent) var(--fill-percent, 0%), #ddd 0%);
+  border-radius: var(--border-radius);
+}
+
+.sun-marker{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 140%;
+  background: var(--color-accent);
+  margin: 0 auto;
+  box-shadow: 0 0 6px var(--color-accent);
+}
+
 .sun-labels {
   display: flex;
   justify-content: space-between;
